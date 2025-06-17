@@ -1,0 +1,44 @@
+{% set name = "tgtools" %}
+{% set version = "0.0.4" %}
+
+package:
+   name: {{ name|lower }}
+   version: {{ version }}
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+source:
+   url: https://github.com/jodyphelan/tgtools/archive/refs/tags/v{{ version }}.tar.gz
+   sha256: ea13088b785effcd033e2021d12fdcc01ea35f63cdc3bedc6d4353674bcab0d2
+
+requirements:
+  build:
+    - python
+    - flit
+    - pip
+  run:
+    - python
+    - tqdm
+
+
+test:
+  commands:
+    - tgtools --help
+    - tgtools import --help
+    - tgtools import snp-distance --help
+
+about:
+  home: https://github.com/jodyphelan/tgtools
+  license: MIT
+  license_file: LICENSE
+  summary: "Tool to manipulate transmission network JSON (transjson) files."
+
+extra:
+  skip-lints:
+#    - should_not_be_noarch_source
+#    - missing_run_exports
+  recipe-maintainers:
+    - buhlentozini
