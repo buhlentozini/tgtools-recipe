@@ -2,17 +2,18 @@
 {% set version = "0.0.4" %}
 
 package:
-   name: {{ name|lower }}
-   version: {{ version }}
+  name: {{ name|lower }}
+  version: {{ version }}
 
 build:
   number: 0
   noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
-
+  run_exports:
+    - {{ pin_subpackage(name, max_pin="x.x") }}
 source:
-   url: https://github.com/jodyphelan/tgtools/archive/refs/tags/v{{ version }}.tar.gz
-   sha256: ea13088b785effcd033e2021d12fdcc01ea35f63cdc3bedc6d4353674bcab0d2
+  url: https://github.com/jodyphelan/tgtools/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: ea13088b785effcd033e2021d12fdcc01ea35f63cdc3bedc6d4353674bcab0d2
 
 requirements:
   build:
@@ -22,13 +23,17 @@ requirements:
   run:
     - python
     - tqdm
+    - pydantic
 
+run_exports:
+  - pydantic >=2.0,<3.0
 
 test:
   commands:
     - tgtools --help
     - tgtools import --help
     - tgtools import snp-distance --help
+
 
 about:
   home: https://github.com/jodyphelan/tgtools
@@ -37,8 +42,5 @@ about:
   summary: "Tool to manipulate transmission network JSON (transjson) files."
 
 extra:
-  skip-lints:
-#    - should_not_be_noarch_source
-#    - missing_run_exports
   recipe-maintainers:
     - buhlentozini
