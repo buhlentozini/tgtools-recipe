@@ -1,6 +1,6 @@
 # tgtools Conda Recipe
 
-This repository contains the **Bioconda recipe** for `tgtools` — a tool to manipulate transmission network JSON (transjson) files.
+This repository contains the **Bioconda recipe** for `tgtools`, a tool to manipulate transmission network JSON (transjson) files.
 
 ## About tgtools
 
