@@ -16,7 +16,7 @@ For more information, visit the [official repository](https://github.com/jodyphe
 
 ## How to Use
 
-This recipe is designed for use with [Bioconda](https://bioconda.github.io/). After merging your PR into the Bioconda recipes repo, the package will be available via:
+This recipe is designed for use with [Bioconda](https://bioconda.github.io/). The package will be available via:
 
 ```bash
 conda install -c bioconda tgtools
